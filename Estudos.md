@@ -31,6 +31,17 @@ Por que migrar do LLMChain para o LCEL?
 - Melhor desempenho: Com suporte a execuções paralelas, processos assíncronos e gerenciamento de estado mais simples.
 - Maior clareza: A orquestração se torna mais transparente, facilitando a compreensão do que acontece a cada passo da cadeia de processamento.
 
+LCEL é fundamental para construir cadeias de processamento robustas e eficientes no LangChain, oferecendo suporte a funcionalidades avançadas como streaming, execução paralela e observabilidade. Utilizando LCEL, desenvolvedores podem criar e adaptar cadeias de processamento para atender às necessidades específicas de suas aplicações, desde a prototipagem até a produção.
+
+Características principais do LCEL
+Suporte a streaming: melhora o tempo até a primeira saída, sendo ideal para processamento em tempo real.
+Suporte assíncrono: permite execução tanto síncrona quanto assíncrona, adequada para prototipagem e produção.
+Execução paralela otimizada: executa etapas paralelas automaticamente para reduzir a latência.
+Retentativas e alternativas: melhora a confiabilidade em escala com configurações de retentativa e alternativa.
+Acesso a resultados intermediários: permite monitoramento e depuração em cadeias complexas.
+Esquemas de entrada e saída: facilita a validação com esquemas Pydantic e JSONSchema.
+Integração com Langsmith e Langserve: oferece observabilidade e facilita a implantação.
+
 ### 3 OutputParser
 O output parser no LangChain é uma ferramenta essencial para processar a saída dos modelos de linguagem (LLMs), transformando respostas em formatos variáveis em estruturas de dados consistentes e utilizáveis. Isso é crucial, especialmente em cenários onde é necessário que máquinas processem essas respostas de forma automatizada (como a saída de uma API).
 
@@ -51,3 +62,14 @@ modelo_cidade= PromptTemplate(
     partial_variables={"formatacao_de_saida": parseador.get_format_instructions()})
 
 -> parseador.get_format_instructions(): gera automaticamente instruções que dizem ao modelo da OpenAI para retornar a resposta no formato JSON esperado.
+
+### 3.3 StrOutputParser()
+O StrOutputParser() é um parser que:
+
+Converte para string: Transforma a resposta do modelo em uma string limpa
+Remove metadados: Elimina informações técnicas desnecessárias
+Formato simples: Retorna apenas o conteúdo textual da resposta
+
+### 4 ChatPromptTemplate.from_messages()
+Serve para criar um "prompt estruturado" para um modelo de chat a partir de uma lista de mensagens simulando uma conversa.
+Permite montar esse prompt como uma sequência de mensagens, de forma organizada, podendo incluir variáveis dinâmicas no meio do processo.
