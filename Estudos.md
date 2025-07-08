@@ -40,3 +40,14 @@ O DatetimeOutputParser é outro exemplo útil para transformar texto em dados de
 
 ### 3.2 JsonOutputParser e PydanticOutputParser
 O JsonOutputParser é particularmente útil quando a saída necessita ser mapeada em diferentes categorias ou itens. Suporta classes Pydantic, facilitando a transformação da saída do LLM em objetos estruturados e prontos para uso em aplicações. Isso é extremamente útil para sumarizar dados complexos, como tickets de suporte, em categorias distintas como Issue, Root Causes e Resolution.
+
+- Exemplo:
+parseador= JsonOutputParser(pydantic_object=Destino)
+modelo_cidade= PromptTemplate(
+    template="""Sugira uma cidade dado meu interesse por {interesse}.
+    {formatacao_de_saida}
+    """,
+    input_variables=['interesse'],
+    partial_variables={"formatacao_de_saida": parseador.get_format_instructions()})
+
+-> parseador.get_format_instructions(): gera automaticamente instruções que dizem ao modelo da OpenAI para retornar a resposta no formato JSON esperado.
