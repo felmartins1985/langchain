@@ -16,9 +16,9 @@ Padronização: Garante que as interações com o LLM sigam um padrão consisten
 ### 2.2 SimpleSequentialChain
 O SimpleSequentialChain é usado para encadear múltiplas operações de forma sequencial. Ele serve para:
 
-Automatizar fluxos de trabalho: Executa uma série de chains em sequência
-Passar resultados automaticamente: A saída de uma chain se torna a entrada da próxima
-Criar pipelines complexos: Permite construir sistemas que executam múltiplas tarefas relacionadas
+- Automatizar fluxos de trabalho: Executa uma série de chains em sequência
+- Passar resultados automaticamente: A saída de uma chain se torna a entrada da próxima
+- Criar pipelines complexos: Permite construir sistemas que executam múltiplas tarefas relacionadas
 
 obs: Ele utiliza o output da operação anterior como paramêtro do prompt atual.
 
@@ -34,13 +34,13 @@ Por que migrar do LLMChain para o LCEL?
 LCEL é fundamental para construir cadeias de processamento robustas e eficientes no LangChain, oferecendo suporte a funcionalidades avançadas como streaming, execução paralela e observabilidade. Utilizando LCEL, desenvolvedores podem criar e adaptar cadeias de processamento para atender às necessidades específicas de suas aplicações, desde a prototipagem até a produção.
 
 Características principais do LCEL
-Suporte a streaming: melhora o tempo até a primeira saída, sendo ideal para processamento em tempo real.
-Suporte assíncrono: permite execução tanto síncrona quanto assíncrona, adequada para prototipagem e produção.
-Execução paralela otimizada: executa etapas paralelas automaticamente para reduzir a latência.
-Retentativas e alternativas: melhora a confiabilidade em escala com configurações de retentativa e alternativa.
-Acesso a resultados intermediários: permite monitoramento e depuração em cadeias complexas.
-Esquemas de entrada e saída: facilita a validação com esquemas Pydantic e JSONSchema.
-Integração com Langsmith e Langserve: oferece observabilidade e facilita a implantação.
+- Suporte a streaming: melhora o tempo até a primeira saída, sendo ideal para processamento em tempo real.
+- Suporte assíncrono: permite execução tanto síncrona quanto assíncrona, adequada para prototipagem e produção.
+- Execução paralela otimizada: executa etapas paralelas automaticamente para reduzir a latência.
+- Retentativas e alternativas: melhora a confiabilidade em escala com configurações de retentativa e alternativa.
+- Acesso a resultados intermediários: permite monitoramento e depuração em cadeias complexas.
+- Esquemas de entrada e saída: facilita a validação com esquemas Pydantic e JSONSchema.
+- Integração com Langsmith e Langserve: oferece observabilidade e facilita a implantação.
 
 ### 3 OutputParser
 O output parser no LangChain é uma ferramenta essencial para processar a saída dos modelos de linguagem (LLMs), transformando respostas em formatos variáveis em estruturas de dados consistentes e utilizáveis. Isso é crucial, especialmente em cenários onde é necessário que máquinas processem essas respostas de forma automatizada (como a saída de uma API).
@@ -66,9 +66,9 @@ modelo_cidade= PromptTemplate(
 ### 3.3 StrOutputParser()
 O StrOutputParser() é um parser que:
 
-Converte para string: Transforma a resposta do modelo em uma string limpa
-Remove metadados: Elimina informações técnicas desnecessárias
-Formato simples: Retorna apenas o conteúdo textual da resposta
+- Converte para string: Transforma a resposta do modelo em uma string limpa
+- Remove metadados: Elimina informações técnicas desnecessárias
+- Formato simples: Retorna apenas o conteúdo textual da resposta
 
 ### 4 ChatPromptTemplate.from_messages()
 Serve para criar um "prompt estruturado" para um modelo de chat a partir de uma lista de mensagens simulando uma conversa.
@@ -78,22 +78,33 @@ Permite montar esse prompt como uma sequência de mensagens, de forma organizada
 
 A ConversationBufferMemory é um tipo de memória conversacional que:
 
-Armazena todo o histórico da conversa (todas as mensagens do usuário e respostas da IA)
-Mantém em buffer todas as interações anteriores na memória
-Não tem limite de tamanho - guarda tudo desde o início da conversa
-Fornece contexto completo para cada nova pergunta
+- Armazena todo o histórico da conversa (todas as mensagens do usuário e respostas da IA)
+- Mantém em buffer todas as interações anteriores na memória
+- Não tem limite de tamanho - guarda tudo desde o início da conversa
+- Fornece contexto completo para cada nova pergunta
 
 ### 6 ConversationChain()
 
-Conecta o LLM com a memória - une o modelo de linguagem com o sistema de memória
-Gerencia o fluxo da conversa automaticamente
-Injeta o histórico no prompt antes de cada nova pergunta
+- Conecta o LLM com a memória - une o modelo de linguagem com o sistema de memória
+- Gerencia o fluxo da conversa automaticamente
+- Injeta o histórico no prompt antes de cada nova pergunta
 
 ### 6.1 ConversationChain()--> método predict
 A ConversationChain pega sua mensagem atual
-Recupera todo o histórico da ConversationBufferMemory
-Cria um prompt que inclui:
-O histórico completo da conversa
-Sua nova mensagem
-Envia tudo para o LLM
-Salva a resposta na memória para próximas interações
+- Recupera todo o histórico da ConversationBufferMemory
+- Cria um prompt que inclui:
+- O histórico completo da conversa
+- Sua nova mensagem
+- Envia tudo para o LLM
+- Salva a resposta na memória para próximas interações
+
+### 7 One-Shot, Zero-Shot e Few-Shot Prompts
+
+- Zero-shot learning:
+No zero-shot learning, o prompt é fornecido sem nenhum exemplo anterior. O modelo usa o conhecimento pré-existente para responder à pergunta ou cumprir a tarefa. É útil quando se deseja uma resposta direta do modelo sem influenciar sua resposta com exemplos anteriores.
+
+- One-shot learning:
+One-shot learning envolve fornecer um único exemplo para o modelo antes de fazer a pergunta. Isso ajuda o modelo a entender o contexto ou o formato da resposta esperada. É particularmente útil para orientar o modelo sobre como responder de maneira específica.
+
+- Few-shot learning:
+Few-shot learning utiliza múltiplos exemplos para guiar o modelo na produção de respostas. Isso é especialmente útil para tarefas complexas, em que vários exemplos podem ajudar o modelo a compreender melhor a tarefa e gerar resultados mais precisos.
