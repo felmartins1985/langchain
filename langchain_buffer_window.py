@@ -7,7 +7,7 @@ from langchain.globals import set_debug
 from langchain_core.pydantic_v1 import Field, BaseModel
 from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
 from langchain.chains import ConversationChain
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferWindowMemory
 from dotenv import load_dotenv
 import os
 # Carrega as variáveis de ambiente do arquivo .env
@@ -32,7 +32,7 @@ mensagens = [
         "Na primeira cidade que você sugeriu lá atrás, quero saber 5 restaurantes para visitar. Responda somente o nome da cidade e o nome dos restaurantes.",
 ]
 
-memory= ConversationBufferMemory()
+memory= ConversationBufferWindowMemory(k=2)
 conversation= ConversationChain(llm=llms, verbose=True, memory=memory)
 
 for mensagem in mensagens:

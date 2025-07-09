@@ -108,3 +108,6 @@ One-shot learning envolve fornecer um único exemplo para o modelo antes de faze
 
 - Few-shot learning:
 Few-shot learning utiliza múltiplos exemplos para guiar o modelo na produção de respostas. Isso é especialmente útil para tarefas complexas, em que vários exemplos podem ajudar o modelo a compreender melhor a tarefa e gerar resultados mais precisos.
+
+### 8 ConversationBufferWindowMemory
+O ConversationBufferWindowMemory mantém apenas as últimas k interações da conversa na memória, onde, por exemplo, k=2 significa que ele irá lembrar apenas das 2 últimas trocas (pergunta e resposta) entre o usuário e o assistente.
