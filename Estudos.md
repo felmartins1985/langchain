@@ -111,3 +111,10 @@ Few-shot learning utiliza múltiplos exemplos para guiar o modelo na produção 
 
 ### 8 ConversationBufferWindowMemory
 O ConversationBufferWindowMemory mantém apenas as últimas k interações da conversa na memória, onde, por exemplo, k=2 significa que ele irá lembrar apenas das 2 últimas trocas (pergunta e resposta) entre o usuário e o assistente.
+
+### 9 ConversationSummaryMemory
+O ConversationSummaryMemory é um tipo de memória do LangChain que resolve um problema importante: quando conversas ficam muito longas, o contexto pode exceder os limites de tokens dos modelos de linguagem. Em vez de manter todo o histórico da conversa, ele cria resumos das interações anteriores.
+Como funciona:
+- Resumo automático: Quando a conversa cresce, o ConversationSummaryMemory usa o próprio LLM para criar um resumo das mensagens anteriores
+- Economia de tokens: Em vez de manter centenas de mensagens, mantém apenas um resumo conciso
+- Contexto preservado: O resumo captura os pontos principais da conversa para manter a continuidade
