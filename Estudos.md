@@ -73,3 +73,27 @@ Formato simples: Retorna apenas o conteúdo textual da resposta
 ### 4 ChatPromptTemplate.from_messages()
 Serve para criar um "prompt estruturado" para um modelo de chat a partir de uma lista de mensagens simulando uma conversa.
 Permite montar esse prompt como uma sequência de mensagens, de forma organizada, podendo incluir variáveis dinâmicas no meio do processo.
+
+### 5 ConversationBufferMemory()
+
+A ConversationBufferMemory é um tipo de memória conversacional que:
+
+Armazena todo o histórico da conversa (todas as mensagens do usuário e respostas da IA)
+Mantém em buffer todas as interações anteriores na memória
+Não tem limite de tamanho - guarda tudo desde o início da conversa
+Fornece contexto completo para cada nova pergunta
+
+### 6 ConversationChain()
+
+Conecta o LLM com a memória - une o modelo de linguagem com o sistema de memória
+Gerencia o fluxo da conversa automaticamente
+Injeta o histórico no prompt antes de cada nova pergunta
+
+### 6.1 ConversationChain()--> método predict
+A ConversationChain pega sua mensagem atual
+Recupera todo o histórico da ConversationBufferMemory
+Cria um prompt que inclui:
+O histórico completo da conversa
+Sua nova mensagem
+Envia tudo para o LLM
+Salva a resposta na memória para próximas interações
