@@ -118,3 +118,40 @@ Como funciona:
 - Resumo automático: Quando a conversa cresce, o ConversationSummaryMemory usa o próprio LLM para criar um resumo das mensagens anteriores
 - Economia de tokens: Em vez de manter centenas de mensagens, mantém apenas um resumo conciso
 - Contexto preservado: O resumo captura os pontos principais da conversa para manter a continuidade
+
+### 10 TextLoader 
+- O que é:
+TextLoader é uma classe da LangChain usada para carregar o conteúdo de arquivos de texto para uso posterior.
+
+- Para que serve:
+Ela abre o arquivo, lê o conteúdo usando a codificação UTF-8, e transforma o texto em um objeto que pode ser manipulado pela LangChain.
+
+### 11 CharacterTextSplitter(chunk_size, chunk_overlap)
+- O que é:
+CharacterTextSplitter é um utilitário que divide textos grandes em blocos menores (chunks).
+
+- Para que serve:
+Divide o texto em partes de até 1000 caracteres, com uma sobreposição (overlap) de 200 caracteres entre os blocos consecutivos.
+
+### 12 OpenAIEmbeddings()
+- O que é:
+Cria um objeto que usa a API da OpenAI para gerar embeddings, que são representações numéricas vetoriais de textos.
+
+- Para que serve:
+Embeddings transformam textos em vetores para que possam ser comparados por similaridade semântica.
+Ou seja, duas frases com significados semelhantes terão vetores próximos.
+
+### 13 FAISS.from_documents(textos, embeddings)
+- O que é:
+Essa linha cria um banco vetorial usando FAISS (Facebook AI Similarity Search), que é uma biblioteca para buscas por similaridade vetorial.
+
+- Para que serve:
+Transforma todos os blocos de texto (textos) em vetores com base nos embeddings e os indexa no FAISS para buscas rápidas.
+
+- Por que isso é importante?
+Quando a LLM recebe uma pergunta, ela consulta esse índice FAISS e recupera os blocos mais parecidos com a pergunta. Assim, a resposta será baseada no conteúdo real do arquivo.
+
+### 14 PyPDFLoader
+PyPDFLoader é uma classe da LangChain que serve para carregar o conteúdo de arquivos PDF.
+
+Ela é uma das várias ferramentas de "loaders" (carregadores) que transformam arquivos em documentos utilizáveis pelas cadeias (chains) da LangChain — especialmente para perguntas e respostas com LLMs.
