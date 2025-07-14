@@ -34,5 +34,5 @@ OPENAI_API_KEY="SUA_CHAVE_DE_API"
 ```
 
 ### Observação
-Dentro do arquivo `Estudos.md` há um breve resumo dos métodos utilizados no projeto, a fim de dar um contexto de como foi feito e criada cada implementação.
+Dentro do arquivo `Estudos.md` há um breve resumo dos métodos utilizados no projeto, a fim de dar um contexto de como foi feita e criada cada implementação.
 
