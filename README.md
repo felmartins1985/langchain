@@ -1,4 +1,3 @@
-<img width="989" alt="image" src="https://github.com/user-attachments/assets/8d596811-2a2e-4b42-bb4c-94a218d6af98" />
 
 # LangChain e Python: criando ferramentas com a LLM OpenAI
 
@@ -34,6 +33,6 @@ Crie ou edite o arquivo `.env` adicionando sua chave de API da OpenAI:
 OPENAI_API_KEY="SUA_CHAVE_DE_API"
 ```
 
-### Observação Importante
+### Observação
+Dentro do arquivo `Estudos.md` há um breve resumo dos métodos utilizados no projeto, a fim de dar um contexto de como foi feito e criada cada implementação.
 
-Os scripts `main.py` e `openai_simples.py` atualmente não estão configurados para ler automaticamente as variáveis do arquivo `.env`. Você precisará ajustar manualmente esses scripts caso deseje utilizar variáveis de ambiente.
